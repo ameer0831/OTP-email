@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>otp</title>
+    <link rel="stylesheet" href="HRMSOTP.CSS">
+</head>
+<body>
+    <div class="center">
+        <form action="">
+            <div class="icon">
+                <span class="material-icon">EMAIL OTP </span>
+            </div>
+            <div class="head">
+                <div class="title">please check your email</div>
+                <div class="subtitle">we've sent a code to shaikameer4553@gmail.com</div> 
+            </div>
+            <span class="input-fields">
+                <span class="inputs">  
+                    <input 
+                    type="text"  class="input"required  pattern="[0-9]*" maxlength="1"
+                     />
+                     <input 
+                     type="text"  class="input"required  pattern="[0-9]*" maxlength="1"
+                     />
+                     <input 
+                     type="text"  class="input"required  pattern="[0-9]*" maxlength="1"
+                     />
+                     <input 
+                    type="text"  class="input"required  pattern="[0-9]*" maxlength="1"
+                     />
+                     <input 
+                     type="text"  class="input"required  pattern="[0-9]*" maxlength="1"
+                     />
+                     <input 
+                     type="text"  class="input"required  pattern="[0-9]*" maxlength="1"
+                     />
+                </span>
+                <div class="timer">
+                    Didn't receive code
+                    <button type="button" id="resend">click to resend</button>
+                    <span class="time"></span>
+                </div>
+            </span>
+            <button type="button" class="btn">Submit</button>
+        </form>
+
+    </div>
+    <script>
+        function timer(n){
+            document.getElementById("resend").disabled =true;
+            const interval = setInterval(()=>{
+                if(n == 0){
+                    clearInterval(interval);
+                    document.getElementById("resend").disabled=false;
+                }
+                document.querySelector(".time").innerHTML=n;
+                n = n-1;
+            },1000);
+        }
+        timer(15);
+        document.getElementById("resend").onclick =function()
+        {
+            timer(15);
+        };
+        let inputs = document.querySelectorAll(".input");
+        inputs.forEach((input)=>{
+            input.addEventListener("keyup",(e)=>{
+                let key = e.key;
+                if(Number.isInteger(Number(key))){
+                    if(input.nextElementSibling){
+                        input.nextElementSibling.focus();
+                    }
+                }
+            });
+            input.addEventListener("keydown",(e)=>{
+                let key=e.key;
+                if(input.value =="" && key === "Backspace" ){
+                    if(input.previousElementSibling){
+                        input.previousElementSibling.focus();
+                    }
+                } 
+            });
+        });
+    </script>
+</body>
+</html>
